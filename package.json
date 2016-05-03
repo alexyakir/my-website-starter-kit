@@ -1,0 +1,24 @@
+{
+  "name": "my-website-starter-kit",
+  "version": "1.0.0",
+  "description": "A starter kit that includes: gulp, pug, postcss, browser-sync & lost-grid.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "autoprefixer": "*",
+    "browser-sync": "*",
+    "gulp": "*",
+    "gulp-imagemin": "*",
+    "gulp-postcss": "*",
+    "gulp-pug": "*",
+    "gulp-sass": "*",
+    "lost": "*",
+    "postcss-normalize": "*",
+    "precss": "*",
+    "pug": "*"
+  }
+}
