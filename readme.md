@@ -1,4 +1,4 @@
-# my-website-starter-kit  [(http://alexyakir.com/)](http://alexyakir.com/)
+# my-website-starter-kit 
 
 > A simple starter kit that with the following dependencies: gulp, pug, postcss, browser-sync, imagemin & lost-grid.
 
