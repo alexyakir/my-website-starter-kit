@@ -13,12 +13,14 @@
     "browser-sync": "*",
     "gulp": "*",
     "gulp-imagemin": "*",
+    "gulp-concat": "*",
     "gulp-postcss": "*",
     "gulp-pug": "*",
     "gulp-sass": "*",
     "lost": "*",
     "postcss-normalize": "*",
     "precss": "*",
-    "pug": "*"
+    "pug": "*",
+    "gulp-uglify": "*"
   }
 }

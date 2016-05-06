@@ -1,1 +1,11 @@
-include layouts/base.pug
+extends layouts/base.pug
+
+block header
+  p this is #{example.headerText}
+block content
+  p this is #{example.contentText}
+block footer
+  p this is #{example.footerText}
+  
+
+

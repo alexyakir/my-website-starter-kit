@@ -1,15 +1,42 @@
+/*====================================
+=            Gulp Plugins            =
+====================================*/
+
 var gulp = require('gulp');
-var postcss = require('gulp-postcss');
-var jade = require('gulp-pug');
-var autoprefixer = require('autoprefixer');
+var pug = require('gulp-pug');
+var concat = require('gulp-concat');
 var browserSync = require('browser-sync');
 var sass = require('gulp-sass');
-//postcss plugins
-// var precss = require('precss');
+var imagemin = require('gulp-imagemin');
+var uglify = require('gulp-uglify');
+
+
+/*=======================================
+=            Postcss Plugins            =
+=======================================*/
+
+
+var postcss = require('gulp-postcss');
 var lost = require('lost');
 var normalize = require('postcss-normalize');
-var imagemin = require('gulp-imagemin');
+var autoprefixer = require('autoprefixer');
 
+
+/*====================================
+=            Scripts Task            =
+====================================*/
+
+var libs = [
+    'src/js/jquery.min.js',
+    'src/js/custom.js'
+]
+
+gulp.task('js:libs', function() {
+    gulp.src(libs)
+        .pipe(concat('main.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest('./dist/js'));
+});
 
 /*================================
 =            Styles Task            =
@@ -37,7 +64,7 @@ gulp.task('styles', function () {
 
 gulp.task('pug', function() {
   return gulp.src('src/views/*.pug')
-    .pipe(jade())
+    .pipe(pug())
     .pipe(gulp.dest('dist'))
     .pipe(browserSync.reload({
       stream: true
@@ -48,9 +75,10 @@ gulp.task('pug', function() {
 =            Watch + BrowserSync Task            =
 ================================================*/
 
-gulp.task('watch',['browserSync', 'styles', 'pug'], function(){
+gulp.task('watch',['browserSync', 'styles', 'pug', 'js:libs'], function(){
   gulp.watch('src/scss/**/*.scss', ['styles']); 
-  gulp.watch('src/views/**/*.pug', ['pug']); 
+  gulp.watch('src/views/**/*.pug', ['pug']);
+  gulp.watch('src/js/**/*.js', ['js:libs']); 
   gulp.watch('dist/js/**/*.js', browserSync.reload); 
 });
 
@@ -81,8 +109,10 @@ gulp.task('imagemin', function() {
 });
 
 /*==========================================
-=            Gulp General Task            =
+=            Gulp General Tasks           =
 ==========================================*/
 
-gulp.task('default', ['styles', 'pug', 'watch', 'browserSync']);
+gulp.task('default', ['styles', 'pug', 'watch', 'js:libs', 'browserSync']);
+gulp.task('build', ['styles', 'pug', 'imagemin', 'js:libs', 'browserSync']);
+
 
